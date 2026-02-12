@@ -4,7 +4,22 @@ import ScoreBoard from "./components/ScoreBoard.jsx";
 import GameBoard from "./components/GameBoard.jsx";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [currentScore, setCurrentScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+  const [clickedCards, setClickedCards] = useState([]);
+
+  function handleCardClick(cardId) {
+    if (clickedCards.includes(cardId)) {
+      if (currentScore > bestScore) {
+        setBestScore(currentScore);
+      }
+      setCurrentScore(0);
+      setClickedCards([]);
+    } else {
+      setCurrentScore(currentScore + 1);
+      setClickedCards([...clickedCards, cardId]);
+    }
+  }
 
   return (
     <>
@@ -16,8 +31,9 @@ function App() {
           </p>
         </div>
 
-        <ScoreBoard />
-        <GameBoard />
+        <ScoreBoard currentScore={currentScore} bestScore={bestScore} />
+
+        <GameBoard onCardClick={handleCardClick} />
       </section>
     </>
   );

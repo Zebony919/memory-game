@@ -1,22 +1,7 @@
 import { useState } from "react";
 import "./ScoreBoard.css";
 
-function ScoreBoard() {
-  const [currentScore, setCurrentScore] = useState(0);
-  const [bestScore, setBestScore] = useState(0);
-
-  function AddCurrentScore() {
-    setCurrentScore(currentScore + 1);
-  }
-
-  function resetCurrentScore() {
-    setCurrentScore(0);
-  }
-
-  function handleBestScore() {
-    setBestScore(currentScore);
-  }
-
+function ScoreBoard({ currentScore, bestScore }) {
   return (
     <section className="score-body">
       <div className="currentScoreBody">

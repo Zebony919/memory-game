@@ -14,3 +14,18 @@ img {
   border: 2px solid white;
   overflow: hidden;
 }
+
+.card {
+  width: clamp(120px, 15vw, 200px); /* Scales between 120px and 250px */
+  height: clamp(120px, 15vw, 200px);
+  border: 2px solid white;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Keeps image proportions */
+}

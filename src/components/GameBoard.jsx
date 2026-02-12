@@ -4,13 +4,12 @@ import { shuffleArray } from "../utils/shuffle.js";
 import "./GameBoard.css";
 import Card from "./Card.jsx";
 
-function GameBoard() {
+function GameBoard({ onCardClick }) {
   const [cards, setCards] = useState([]);
-  const clickedCards = [];
 
   useEffect(() => {
     const loadCards = async () => {
-      const images = await fetchCarImages("cars", 12);
+      const images = await fetchCarImages("cars", 30);
       console.log("Image array: ", images);
       setCards(images);
     };
@@ -19,10 +18,8 @@ function GameBoard() {
   }, []);
 
   const handleCardClick = (cardId) => {
-    setCards((prevCards) => {
-      const shuffled = shuffleArray(prevCards);
-      return shuffled;
-    });
+    setCards((prevCards) => shuffleArray(prevCards));
+    onCardClick(cardId);
   };
 
   return (
